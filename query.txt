@@ -1,0 +1,30 @@
+create database pentest;
+use pentest;
+create table members(
+idx int not null auto_increment,
+id varchar(30),
+password varchar(100),
+name varchar(50),
+email varchar(30),
+company varchar(30),
+primary key(idx)
+)DEFAULT CHARSET = utf8;
+create table insecure_board(
+idx int not null auto_increment,
+title varchar(50),
+content text,
+id varchar(20),
+writer varchar(30),
+password varchar(50),
+file varchar(50),
+regdate date,
+secret varchar(2),
+primary key(idx)
+)DEFAULT CHARSET = utf8;
+create table customer_info(idx int, id varchar(15), password varchar(30), jumin varchar(15));
+insert into customer_info values(1, 'admin', '@dmin!q@w#e', '810203-1023113');
+insert into customer_info values(2, 'gugucon', '99c0n', '861121-1244251');
+insert into customer_info values(3, 'sonata_zzang', 'sosohan123', '890912-1601812');
+insert into customer_info values(4, 'halls', 'halls920912', '921001-1881222');
+insert into customer_info values(5, 'tkworld', '1q2w3e4r', '870405-1285264');
+
