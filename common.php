@@ -5,9 +5,9 @@
 	$upload_path = "upload";
 
 	function mysql_conn() {
-		$host = "127.0.0.1";
-		$id = "root";
-		$pw = "apmsetup";
+		$host = "localhost";
+		$id = "jin";
+		$pw = "0110";
 		$db = "pentest";
 	
 		$db_conn = new mysqli($host, $id, $pw, $db);

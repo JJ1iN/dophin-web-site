@@ -1,4 +1,4 @@
-<?
+<?php
   @session_start();
   include_once("./common.php");
   $page = $_GET["page"];
@@ -51,47 +51,42 @@
         border-color: #32F1FF;
       }
       .dolphin-icon {
-        background-image: url('/WHS_Dolphin/htmlpurifier/art/dolphin.svg');
+        background-image: url('/Dolphin/htmlpurifier/art/dolphin.svg');
         display: inline-block;
         height: 24px; /* Adjust as needed */
-        width: 24px; /* Adjust as needed */
-      
-}
-
-     </style> 
-    
+        width: 24px; /* Adjust as needed */      
+      }
+    </style>  
   </head>
-
-<body>
-
+  <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
       <span class="dolphin-icon"></span>&nbsp;&nbsp;
       <h5 class="my-0 mr-md-auto font-weight-normal">WHS-Dolphin</h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="index.php">Home</a>
-        <? if(empty($_SESSION["id"])) { ?>
+        <?php if(empty($_SESSION["id"])) { ?>
         <a class="p-2 text-dark" href="index.php?page=login">Login</a>
         <a class="p-2 text-dark" href="index.php?page=join">Join</a>
-        <? } else { ?>
+        <?php } else { ?>
         <a class="p-2 text-dark" href="index.php?page=mypage&id=<?=$_SESSION["id"]?>">MyPage</a>
-        <? if($_SESSION["id"] == "admin") { ?>
+        <?php if($_SESSION["id"] == "admin") { ?>
         <a class="p-2 text-dark" href="index.php?page=pingcheck">Ping Check</a>
         <a class="p-2 text-dark" href="index.php?page=xmlparser">XML Parser</a>
-        <? } ?>
+        <?php } ?>
         <a class="p-2 text-dark" href="logout.php">Logout</a>
-        <? } ?>
+        <?php } ?>
       </nav>
     </div>
-
     <div class="container">
-    <? include $page; ?>
+    <?php include $page; ?>
     </div>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
