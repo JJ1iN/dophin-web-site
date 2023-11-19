@@ -1,4 +1,4 @@
-<?
+<?php
 	include_once("./common.php");
 
 	$db_conn = mysql_conn();
@@ -73,6 +73,6 @@
     </script>
   </body>
 </html>
-<?
+<?php
 	$db_conn->close();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 	include_once("./common.php");
 
 	$db_conn = mysql_conn();
@@ -13,7 +13,7 @@
       <h1 class="display-4">Modify Page</h1>
       <hr>
     </div>
-	<?
+	<?php
 	if($num != 0) {
 	  $row = $result->fetch_assoc();
 	?>
@@ -33,9 +33,9 @@
       </div>
 		  <div class="form-group">
 			<label for="exampleInputPassword1">File</label>
-      <? if(!empty($row["file"])) { ?>
+      <?php if(!empty($row["file"])) { ?>
       <p class="font-italic">[Attach]&nbsp;<?=$row["file"]?></p>
-      <? } ?>
+      <?php } ?>
       <input type="hidden" class="form-control" name="oldfile" value="<?=$row["file"]?>">
 			<input type="file" class="form-control" name="userfile">
 		  </div>
@@ -51,13 +51,13 @@
 		</div>
 		</form>
     </div>
-	<?
+	<?php
 	} else {
 	?>
 		<script>alert("존재하지 않는 게시글 입니다.");history.back(-1);</script>
-	<?
+	<?php
 	}
 	?>
-<?
+<?php
 	$db_conn->close();
 ?>

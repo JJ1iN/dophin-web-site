@@ -1,4 +1,4 @@
-<?
+<?php
 	$db_conn = mysql_conn();
 	$idx = $_REQUEST["idx"];
 	$password = $_POST["password"];
@@ -18,7 +18,7 @@
     </div>
     
     <div class="container">
-	<?
+	<?php
 	if($num != 0) {
 		$row = $result->fetch_assoc();
 	?>
@@ -40,30 +40,30 @@
 			  <th scope="row" width="20%" class="text-center">Contents</th>
 			  <td><?=$row["content"]?></td>
 			</tr>
-			<? if(!empty($row["file"])) { ?>
+			<?php if(!empty($row["file"])) { ?>
 			<tr>
 			  <th scope="row" width="20%" class="text-center">File</th>
 			  <td><a href="download.php?file=<?=$row["file"]?>"><?=$row["file"]?></a></td>
 			</tr>
-			<? } ?>
+			<?php } ?>
 		  </tbody>
 		</table>
 		<div class="text-right">
-			<? if($_SESSION["id"] == $row["id"]) { ?>
+			<?php if($_SESSION["id"] == $row["id"]) { ?>
 			<button type="button" class="btn btn-outline-secondary" onclick="location.href='index.php?page=modify&idx=<?=$row["idx"]?>'">Modify</button>
 			<button type="button" class="btn btn-outline-danger" onclick="location.href='index.php?page=auth&mode=delete&idx=<?=$row["idx"]?>'">Delete</button>
-			<? } ?>
+			<?php } ?>
 			<button type="button" class="btn btn-outline-warning" onclick="location.href='index.php'">List</button>
 		</div>
     </div>
-	<?
+	<?php
 	} else {
 	?>
 		<script>alert("존재하지 않는 게시글 입니다.");history.back(-1);</script>
-	<?
+	<?php
 	}
 	?>
 
-<?
+<?php
 	$db_conn->close();
 ?>

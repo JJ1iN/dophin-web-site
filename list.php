@@ -1,4 +1,4 @@
-<?
+<?php
   @include_once("./common.php");
   
   $db_conn = mysql_conn();
@@ -32,13 +32,13 @@
   $num = $result->num_rows;
 ?>
     <div class="container">
-    <? if(!empty($_SESSION["id"])) { ?>
+    <?php if(!empty($_SESSION["id"])) { ?>
 		<div class="text-right">
 			<p><button type="button" class="btn btn-outline-secondary" onclick="location.href='index.php?page=write'">Write</button><p>
     </div>
-    <? } else { ?>
+    <?php } else { ?>
       <p>&nbsp;</p>
-    <? } ?>
+    <?php } ?>
 		<table class="table">
 		  <thead class="thead-dark">
 			<tr>
@@ -49,30 +49,30 @@
 			</tr>
 		  </thead>
 		  <tbody>
-			<?
+			<?php
 			if($num != 0) {
 				for ( $i=0; $i<$num; $i++ ) {
 				  $row = $result->fetch_assoc();
 			?>
 			<tr>
 			  <th scope="row" class="text-center"><?=$row["idx"]?></th>
-        <? if($row["secret"]=="y") { ?>
+        <?php if($row["secret"]=="y") { ?>
         <td><span style="display:inline-block; height:15px; width:15px;" data-feather="lock"></span>&nbsp;<a href="index.php?page=auth&idx=<?=$row["idx"]?>&mode=view"><?=$row["title"]?></a></td>
-        <? } else { ?>
+        <?php } else { ?>
           <td><a href="index.php?page=view&idx=<?=$row["idx"]?>"><?=$row["title"]?></a></td>
-        <? } ?>
+        <?php } ?>
 			  
 			  <td class="text-center"><?=$row["writer"]?></td>
 			  <td class="text-center"><?=$row["regdate"]?></td>
 			</tr>
-			<?
+			<?php
 				}
 			} else {
 			?>
             <tr>
               <td colspan="4" class="text-center">Posts does not exist.</td>
             </tr>
-			<?
+			<?php
 			}
 			?>
 		  </tbody>
@@ -95,6 +95,6 @@
 			</div>
 		</form>
     </div>
-<?
+<?php
 	$db_conn->close();
 ?>

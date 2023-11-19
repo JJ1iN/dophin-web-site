@@ -1,4 +1,4 @@
-<?
+<?php
   $db_conn = mysql_conn();
 
   $id = $_POST["id"];

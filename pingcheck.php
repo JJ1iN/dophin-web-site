@@ -1,4 +1,4 @@
-<?
+<?php
   include_once("./common.php");
   $ip = $_POST["ip"];
   $page = $_SERVER['REQUEST_URI'];
@@ -24,7 +24,7 @@
 			</div>
 		</form>
 	</div>
-	<? if(!empty($result)) { ?>
+	<?php if(!empty($result)) { ?>
 	<hr>
 	<?=$result?>
-	<? } ?>
+	<?php } ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 	include_once("./common.php");
 	$xml = $_POST["xml"];
 
@@ -21,9 +21,9 @@
 			</div>
 		</form>
 	</div>
-	<? if(!empty($result)) { ?>
+	<?php if(!empty($result)) { ?>
 	<hr>
-	<?
+	<?php
 	print_r($result);
 	?>
-	<? } ?>
+	<?php } ?>

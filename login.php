@@ -1,4 +1,4 @@
-<?
+<?php
   $db_conn = mysql_conn();
   
   if(!empty($_SESSION["id"])) {
