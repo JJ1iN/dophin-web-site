@@ -2,8 +2,8 @@
 	include_once("./common.php");
 
 	$db_conn = mysql_conn();
-	$id = $_GET["id"];
-	$gubun = $_POST["gubun"];
+	$id = isset($_GET["id"]) ? $_GET["id"] : "";
+    $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
 
 	if($gubun == "action") {
 		$name = $db_conn->real_escape_string($_POST["name"]);

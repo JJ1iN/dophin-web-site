@@ -1,6 +1,6 @@
 <?php
 	include_once("./common.php");
-	$xml = $_POST["xml"];
+	$xml = isset($_POST["xml"]) ? $_POST["xml"] : "";
 
 	if(!empty($xml)){
 		$result = simplexml_load_string($xml);

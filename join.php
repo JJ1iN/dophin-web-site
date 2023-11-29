@@ -1,12 +1,12 @@
 <?php
   $db_conn = mysql_conn();
 
-  $id = $_POST["id"];
-  $password1 = $_POST["password1"];
-  $password2 = $_POST["password2"];
-  $name = $_POST["name"];
-  $email = $_POST["email"];
-  $company = $_POST["company"];
+  $id = isset($_POST["id"]) ? $_POST["id"] : "";
+  $password1 = isset($_POST["password1"]) ? $_POST["password1"] : "";
+  $password2 = isset($_POST["password2"]) ? $_POST["password2"] : "";
+  $name = isset($_POST["name"]) ? $_POST["name"] : "";
+  $email = isset($_POST["email"]) ? $_POST["email"] : "";
+  $company = isset($_POST["company"]) ? $_POST["company"] : "";
 
   if(!empty($id) && !empty($password1) && !empty($password2) && !empty($name) && !empty($email)) {
     if($password1 != $password2) {

@@ -5,8 +5,8 @@
   $page = $_SERVER['REQUEST_URI'];
 
   # Search Logic
-  $search_type = $_POST["search_type"];
-  $keyword = $_POST["keyword"];
+  $search_type = isset($_POST["search_type"]) ? $_POST["search_type"] : "";
+  $keyword = isset($_POST["keyword"]) ? $_POST["keyword"] : "";
 
   if(empty($search_type) && empty($keyword)) {
     $query = "select * from {$tb_name}";
@@ -19,8 +19,8 @@
   }
 
   # Sort Logic
-  $sort = $_GET["sort"];
-  $sort_column = $_GET["sort_column"];
+  $sort = isset($_GET["sort"]) ? $_GET["sort"] : "";
+  $sort_column = isset($_GET["sort_column"]) ? $_GET["sort_column"] : "";
 
   if(empty($sort_column) && empty($sort)) {
     $query .= " order by idx desc";

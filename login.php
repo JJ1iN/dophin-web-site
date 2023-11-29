@@ -6,9 +6,9 @@
     exit();
   }
 
-  $id = $_POST["id"];
-  $password = $_POST["password"];
-  
+  $id = isset($_POST["id"]) ? $_POST["id"] : "";
+  $password = isset($_POST["password"]) ? $_POST["password"] : "";
+
   if(!empty($id) && !empty($password)) {
     $password = md5($password);
     $query = "select * from members where id='{$id}' and password='{$password}'";

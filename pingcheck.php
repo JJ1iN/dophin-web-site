@@ -1,6 +1,7 @@
 <?php
   include_once("./common.php");
-  $ip = $_POST["ip"];
+  
+  $ip = isset($_POST["ip"]) ? $_POST["ip"] : "";
   $page = $_SERVER['REQUEST_URI'];
 
   if(!empty($ip)) {

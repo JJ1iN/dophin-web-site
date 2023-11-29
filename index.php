@@ -1,7 +1,7 @@
 <?php
   @session_start();
   include_once("./common.php");
-  $page = $_GET["page"];
+  $page = isset($_GET["page"]) ? $_GET["page"] : "";
 
   if(empty($page)) {
     $page = "list.php";
@@ -28,8 +28,8 @@
   } else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
   }
-
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
