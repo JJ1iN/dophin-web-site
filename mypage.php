@@ -1,9 +1,15 @@
 <?php
+	@session_start();
 	include_once("./common.php");
 
 	$db_conn = mysql_conn();
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
     $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
+
+	if(!isset($_SESSION["id"]) || $_SESSION["id"] != $id) {
+		echo "<script>alert('로그인이 필요한 서비스입니다.');location.href='index.php?page=login';</script>";
+		exit();
+	}
 
 	if($gubun == "action") {
 		$name = $db_conn->real_escape_string($_POST["name"]);
