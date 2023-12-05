@@ -26,8 +26,7 @@ sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
 sudo iptables -I INPUT 1 -p tcp --dport 80 -j DROP
 ```
 
-### MySQL
-```
-sudo mysql -u root
-```
-
+## To-Do
+- KakaoTalk, Naver Login
+- Comment
+- User Follow
