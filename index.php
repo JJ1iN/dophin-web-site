@@ -1,6 +1,7 @@
 <?php
   @session_start();
   include_once("./common.php");
+  include_once("./sqlfilter.php");
 
   $page = isset($_GET["page"]) ? $_GET["page"] : "";
   if(empty($page)) {

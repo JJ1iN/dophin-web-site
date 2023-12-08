@@ -1,5 +1,6 @@
 <?php
   $db_conn = mysql_conn();
+  include_once("./sqlfilter.php");
   
   # Check if user is already logged in
   if(!empty($_SESSION["id"])) {
