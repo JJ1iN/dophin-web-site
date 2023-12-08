@@ -1,7 +1,7 @@
 <?php
 @session_start();
 header("Content-Type: text/html; charset=UTF-8");
-include ( './common.php' );
+include ('./common.php');
 
 $db_conn = mysql_conn();
 
