@@ -1,0 +1,5 @@
+# .gitignore
+
+# Database
+common.php
+query.txt
