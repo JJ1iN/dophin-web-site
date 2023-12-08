@@ -1,0 +1,8 @@
+# .gitignore
+
+# Database
+common.php
+query.txt
+
+# Filter
+sqlfilter.php

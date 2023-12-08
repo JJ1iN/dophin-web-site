@@ -1,5 +1,6 @@
 <?php
   $db_conn = mysql_conn();
+  include_once("sqlfilter.php");
   
   if(!empty($_SESSION["id"])) {
     echo "<script>location.href='index.php';</script>";
