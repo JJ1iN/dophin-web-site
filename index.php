@@ -4,6 +4,7 @@
   include_once("./sqlfilter.php");
 
   $page = isset($_GET["page"]) ? $_GET["page"] : "";
+  
   if(empty($page)) {
     $page = "list.php";
   } else if ($page == "mypage") {

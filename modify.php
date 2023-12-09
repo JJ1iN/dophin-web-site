@@ -55,7 +55,6 @@
 } else { ?>
   <script>alert("Not existing post.");history.back(-1);</script>
 <?php } ?>
-
 <?php
 	$db_conn->close();
 ?>

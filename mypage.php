@@ -5,7 +5,7 @@
 	$db_conn = mysql_conn();
 
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
-  $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
+    $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
 
 	if(!isset($_SESSION["id"]) || $_SESSION["id"] != $id) {
 		echo "<script>alert('로그인이 필요한 서비스입니다.');location.href='index.php?page=login';</script>";
@@ -75,7 +75,6 @@
 <?php } else { ?>
   <script>alert("Not existing user.");history.back(-1);</script>
 <?php } ?>
-
 <?php
 	$db_conn->close();
 ?>
