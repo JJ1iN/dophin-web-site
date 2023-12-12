@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 	header("Content-Type: text/html; charset=UTF-8");
-	include ( './common.php' );
+	include ('./common.php');
 
 	$db_conn = mysql_conn();
 
@@ -13,6 +13,15 @@
 	date_default_timezone_set('Asia/Seoul');
 	$currentTime = date('Y-m-d H:i:s');
 
+	if(empty($id)) { // No login
+		echo "<script>alert('Login First.');location.href='index.php?page=login';</script>";
+		exit;
+	}
+	if(empty($content)) { // No comment
+		echo "<script>alert('Please input your comments.'); history.back();</script>";
+		exit;
+	}
+	
     $query = "insert into comments (post_idx, content, id, writer, regdate) values('{$post_idx}', '{$content}', '{$id}', '{$writer}', '{$currentTime}')";
 	$db_conn->query($query);
 
