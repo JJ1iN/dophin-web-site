@@ -3,6 +3,8 @@
   include_once("./common.php");
   include_once("./sqlfilter.php");
 
+  setcookie("name","value",0,"/","http://144.24.77.217/Dolphin/index.php",false,true);
+
   $page = isset($_GET["page"]) ? $_GET["page"] : "";
   
   if(empty($page)) {
