@@ -28,5 +28,4 @@ sudo iptables -I INPUT 1 -p tcp --dport 80 -j DROP
 
 ## To-Do
 - KakaoTalk, Naver Login
-- Comment
 - User Follow

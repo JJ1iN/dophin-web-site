@@ -86,18 +86,33 @@
               <span><?=$row_comment["regdate"]?></span>
             </div>  
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div class="comment-content">
+              <div id="commentContent<?=$comment_idx?>" class="comment-content">
                 <?=$row_comment["content"]?>
               </div>
               <div style="text-align: right;">
                 <?php if($session_id == $row_comment['writer']) { # If session id is same with comment writer id ?>
-                  <form action="delete_comment.php" method="post">
-                    <input type="hidden" name="comment_idx" value="<?=$comment_idx?>">
-                    <input type="hidden" name="post_idx" value="<?=$idx?>">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-danger" type="submit">Delete</button>
-                    </div>
-                  </form>
+                  <div style="display: flex;">
+                    <!-- Edit form -->
+                    <button id="editButton<?=$comment_idx?>" class="btn btn-outline-primary" style="margin-right: 10px;" onclick='editComment(<?=$comment_idx?>)'>Edit</button>
+                    <form id="editForm<?=$comment_idx?>" style="display:none" action="edit_comment.php" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="comment_idx" value="<?=$comment_idx?>">
+                      <input type="hidden" name="post_idx" value="<?=$idx?>">
+                      <div class="input-group" style="width: 345%">
+                        <textarea class="form-control" name="new_content"><?=$row_comment["content"]?></textarea>
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-success" type="submit">Save</button>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- Delete form -->
+                    <form action="delete_comment.php" method="post">
+                      <input type="hidden" name="comment_idx" value="<?=$comment_idx?>">
+                      <input type="hidden" name="post_idx" value="<?=$idx?>">
+                      <div class="input-group-append">
+                        <button id="deleteButton<?=$comment_idx?>" class="btn btn-outline-danger" type="submit">Delete</button>
+                      </div>
+                    </form>
+                  </div>
                 <?php } ?>
               </div>
             </div>
@@ -124,4 +139,16 @@
   <?php
     $db_conn->close();
   ?>
+
+  <script>
+    function editComment(comment_idx) {
+      // Hide the original comment, Edit button, and Delete button
+      document.getElementById('commentContent' + comment_idx).style.display = 'none';
+      document.getElementById('editButton' + comment_idx).style.display = 'none';
+      document.getElementById('deleteButton' + comment_idx).style.display = 'none';
+
+      // Show the edit form
+      document.getElementById('editForm' + comment_idx).style.display = 'block';
+    }
+  </script>
 </body>
