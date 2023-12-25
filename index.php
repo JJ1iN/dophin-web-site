@@ -1,40 +1,42 @@
 <?php
-  @session_start();
-  include_once("./common.php");
-  include_once("./sqlfilter.php");
+@session_start();
+include_once("./common.php");
+include_once("./sqlfilter.php");
 
-  setcookie("name","value",0,"/","http://144.24.77.217/Dolphin/index.php",false,true);
+setcookie("name","value",0,"/","http://144.24.77.217/Dolphin/index.php",false,true);
 
-  // 사용자로부터 입력받은 값을 안전하게 처리합니다.
-  $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
-  $page = htmlspecialchars($page);
+// 사용자로부터 입력받은 값을 안전하게 처리합니다.
+$page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+$page = htmlspecialchars($page);
 
-  if(empty($page)) {
+// $page 값이 없으면 기본 페이지로 설정합니다.
+if(empty($page)) {
     $page = "list.php";
-  } else if ($page == "mypage") {
+} else if ($page == "mypage") {
     $page = "mypage.php";
-  } else if ($page == "login") {
+} else if ($page == "login") {
     $page = "login.php";
-  } else if ($page == "join") {
+} else if ($page == "join") {
     $page = "join.php";
-  } else if ($page == "pingcheck") {
+} else if ($page == "pingcheck") {
     $page = "pingcheck.php";
-  } else if ($page == "xmlparser") {
+} else if ($page == "xmlparser") {
     $page = "xmlparser.php";
-  } else if ($page == "write") {
+} else if ($page == "write") {
     $page = "write.php";
-  } else if ($page == "view") {
+} else if ($page == "view") {
     $page = "view.php";
-  } else if ($page == "modify") {
+} else if ($page == "modify") {
     $page = "modify.php";
-  } else if ($page == "auth") {
+} else if ($page == "auth") {
     $page = "auth.php";
-  } else if ($page == "error") {
+} else if ($page == "error") {
     $page = "error.php";
-  } else {
+} else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
-  }
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
