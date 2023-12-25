@@ -1,15 +1,15 @@
 <?php
-    @session_start();
-    include_once("./common.php");
+  @session_start();
+  include_once("./common.php");
 
-    unset($_SESSION["id"]);
-    session_destroy();
-    
-    $db_conn = mysql_conn();
-    $id = $_GET["id"];
+  unset($_SESSION["id"]);
+  session_destroy();
 
-    $query = "delete from members where id='{$id}'";
-	$result = $db_conn->query($query);
+  $db_conn = mysql_conn();
+  $id = $_GET["id"];
 
-    echo "<script>location.href='index.php'</script>";
+  $query = "delete from members where id='{$id}'";
+  $result = $db_conn->query($query);
+
+  echo "<script>location.href='index.php'</script>";
 ?>

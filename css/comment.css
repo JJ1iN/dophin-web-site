@@ -1,0 +1,22 @@
+.comment-sect {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-sect .comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .comment-sect .comment-header span {
+    font-weight: bold;
+  }
+  
+  .comment-sect .comment-content {
+    font-size: 14px;
+  }
