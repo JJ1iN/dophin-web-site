@@ -29,6 +29,8 @@
     $page = "auth.php";
   } else if ($page == "error") {
     $page = "error.php";
+  } else if ($page == "follow") {
+      $page = "follow.php";
   } else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
   }
@@ -68,6 +70,7 @@
     <h5 class="my-0 mr-md-auto font-weight-normal">WHS-Dolphin</h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="p-2 text-dark" href="index.php">Home</a>
+      <a class="p-2 text-dark" href="index.php">Folllow</a>
       <!-- Login Session Check -->
       <?php if(empty($_SESSION["id"])) { ?>
       <a class="p-2 text-dark" href="index.php?page=login">Login</a>

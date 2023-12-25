@@ -65,6 +65,7 @@
         <button type="button" class="btn btn-outline-secondary" onclick="location.href='index.php?page=modify&idx=<?=$row["idx"]?>'">Modify</button>
         <button type="button" class="btn btn-outline-danger" onclick="location.href='index.php?page=auth&mode=delete&idx=<?=$row["idx"]?>'">Delete</button>
         <?php } ?>
+        <button type="button" class="btn btn-outline-success" onclick="location.href='follow.php'">Follow</button>
         <button type="button" class="btn btn-outline-warning" onclick="location.href='index.php'">List</button>
       </div>
 		  <br>
