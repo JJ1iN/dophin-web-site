@@ -8,6 +8,5 @@
   $query = "insert into copywirter(copywriter) values('{$copywriter}')";
   $result = $db_conn->query($query);
 
-  
   echo "<script>location.href='follow.php'</script>";
 ?>
