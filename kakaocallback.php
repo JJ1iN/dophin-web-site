@@ -1,15 +1,7 @@
 <?php
-$servername = "127.0.0.1"; // 데이터베이스 서버의 주소
-$username = "root"; // 데이터베이스 사용자 이름
-$password = "apmsetup"; // 데이터베이스 비밀번호
-
-// 데이터베이스에 연결
-$db_conn = new mysqli($servername, $username, $password, 'pentest');
-
-// 연결 확인
-if ($db_conn->connect_error) {
-    die("Connection failed: " . $db_conn->connect_error);
-}
+@session_start();
+include ('./common.php');
+$db_conn = mysql_conn();
 
 session_start();
 // KAKAO LOGIN
