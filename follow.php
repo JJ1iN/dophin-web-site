@@ -34,10 +34,51 @@
 	$num = $result->num_rows;
 ?>
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Follow</h1>
-  <hr>
-    </div>
-<div class="form-group">
-    <label>Follows</label>
-    </div>
+<head>
+	<link rel="stylesheet" href="./css/comment.css">
+</head>
+<body>
+  <?php
+    $db_conn = mysql_conn();
+    $idx = isset($_REQUEST["idx"]) && is_numeric($_REQUEST["idx"]) ? $_REQUEST["idx"] : null;
+
+    if($idx !== null) {
+      $password = isset($_POST["password"]) ? $_POST["password"] : "";
+
+      if(empty($password)) {
+        $query = "select * from {$tb_name} where idx={$idx} and secret='n'";
+      } else {
+        $query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
+      }
+
+      $result_post = $db_conn->query($query);
+      $num_post = $result_post->num_rows;
+    }
+  ?>
+
+	<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+		<h1 class="display-4">Follow</h1>
+		<hr>
+	</div>
+
+	<div class="container">
+    <?php
+    if($num_post != 0) {
+      $row = $result_post->fetch_assoc();
+    ?>
+      <table class="table table-bordered">
+        <tbody>
+        <tr>
+          <th scope="row" width="20%" class="text-center">Follows</th>
+          <td><?=$row["copywriter"]?></td>
+        </tr>
+        <?php ?>
+        </tbody>
+      </table>
+  <?php	} ?>
+ 
+
+  <?php
+    $db_conn->close();
+  ?>
+</body>
