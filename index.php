@@ -34,7 +34,7 @@ if(empty($page)) {
     $page = "error.php";
 } else if ($page == "kakaocallback.php") {
     $page = "kakaocallback.php";
-else {
+} else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
 }
  
