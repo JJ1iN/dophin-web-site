@@ -35,10 +35,7 @@ if(empty($page)) {
 } else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
 }
- // 카카오 로그인 접근토큰 요청 예제
-  $kakao_state = md5(microtime() . mt_rand()); // 보안용 값
-  $_SESSION['kakao_state'] = $kakao_state;
-  $kakao_apiURL = "https://kauth.kakao.com/oauth/authorize?client_id=".KAKAO_CLIENT_ID."&redirect_uri=".urlencode(KAKAO_CALLBACK_URL)."&response_type=code&state=".$kakao_state;
+ 
 ?>
 
 <!doctype html>
@@ -74,7 +71,6 @@ if(empty($page)) {
     <span class="dolphin-icon"></span>&nbsp;&nbsp;
     <h5 class="my-0 mr-md-auto font-weight-normal">WHS-Dolphin</h5>
     <nav class="my-2 my-md-0 mr-md-3">
-    <a href="<?=$kakao_apiURL;?>"><img src="sns_kakao.png"></a>
       <a class="p-2 text-dark" href="index.php">Home</a>
       <!-- Login Session Check -->
       <?php if(empty($_SESSION["id"])) { ?>
