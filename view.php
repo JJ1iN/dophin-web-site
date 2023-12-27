@@ -65,6 +65,9 @@
         <button type="button" class="btn btn-outline-secondary" onclick="location.href='index.php?page=modify&idx=<?=$row["idx"]?>'">Modify</button>
         <button type="button" class="btn btn-outline-danger" onclick="location.href='index.php?page=auth&mode=delete&idx=<?=$row["idx"]?>'">Delete</button>
         <?php } ?>
+        <button type="button" class="btn btn-success" 
+          onclick='if(confirm("팔로우 하시겠습니까?")) location.href="followadd.php?copywriter=<?=$_SESSION['writer']?>"'>Follow
+        </button>
         <button type="button" class="btn btn-outline-warning" onclick="location.href='index.php'">List</button>
       </div>
 		  <br>
