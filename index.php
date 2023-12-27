@@ -32,7 +32,9 @@ if(empty($page)) {
     $page = "auth.php";
 } else if ($page == "error") {
     $page = "error.php";
-} else {
+} else if ($page == "kakaocallback.php") {
+    $page = "kakaocallback.php";
+else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
 }
  
