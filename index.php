@@ -32,12 +32,12 @@ if(empty($page)) {
     $page = "auth.php";
 } else if ($page == "error") {
     $page = "error.php";
-} else if ($page == "kakaocallback") {
-    $page = "kakaocallback.php";
-} else {
+} 
+else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
 }
- 
+ define('KAKAO_CLIENT_ID', '89386f572e521e53290b241600c5b88b');
+ define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback.php'); // 콜백URL
 ?>
 
 <!doctype html>
