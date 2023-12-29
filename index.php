@@ -3,7 +3,7 @@
 include_once("./common.php");
 include_once("./sqlfilter.php");
 
-setcookie("name","value",0,"/","http://144.24.77.217/Dolphin/index.php",false,true);
+//setcookie("name","value",0,"/","http://144.24.77.217/Dolphin/index.php",false,true);
 
 // 사용자로부터 입력받은 값을 안전하게 처리합니다.
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
