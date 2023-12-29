@@ -8,8 +8,13 @@ $db_conn = mysql_conn();
 $comment_idx = $_POST['comment_idx'];
 $post_idx = $_POST['post_idx'];
 
-$query = "DELETE FROM comments WHERE idx = {$comment_idx}";
-$db_conn->query($query);
+// $query = "DELETE FROM comments WHERE idx = {$comment_idx}";
+// $db_conn->query($query);
+
+# Prepared Statement
+$stmt = $db_conn->prepare("DELETE FROM comments WHERE idx = ?");
+$stmt->bind_param("i", $comment_idx);
+$stmt->execute();
 
 echo "<script>location.href='index.php?page=view&idx={$post_idx}';</script>";
 $db_conn->close();

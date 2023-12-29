@@ -22,8 +22,13 @@
 		exit;
 	}
 	
-    $query = "insert into comments (post_idx, content, id, writer, regdate) values('{$post_idx}', '{$content}', '{$id}', '{$writer}', '{$currentTime}')";
-	$db_conn->query($query);
+    // $query = "insert into comments (post_idx, content, id, writer, regdate) values('{$post_idx}', '{$content}', '{$id}', '{$writer}', '{$currentTime}')";
+	// $db_conn->query($query);
+
+	# Prepared Statement
+	$stmt = $db_conn->prepare("INSERT INTO comments (post_idx, content, id, writer, regdate) VALUES (?, ?, ?, ?, ?)");
+	$stmt->bind_param("issss", $post_idx, $content, $id, $writer, $currentTime);
+	$stmt->execute();
 
     echo "<script>location.href='index.php?page=view&idx={$post_idx}';</script>";
 	$db_conn->close();

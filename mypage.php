@@ -5,7 +5,7 @@
 	$db_conn = mysql_conn();
 
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
-    $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
+  $gubun = isset($_POST["gubun"]) ? $_POST["gubun"] : "";
 
 	if(!isset($_SESSION["id"]) || $_SESSION["id"] != $id) {
 		echo "<script>alert('로그인이 필요한 서비스입니다.');location.href='index.php?page=login';</script>";
@@ -19,18 +19,33 @@
 		$password = $_POST["password"];
 		if(!empty($password)) {
 			$password = md5($password);
-			$query = "update members set name='{$name}', email='{$email}', company='{$company}', password='{$password}' where id='{$id}'";
-			$result = $db_conn->query($query);
+			// $query = "update members set name='{$name}', email='{$email}', company='{$company}', password='{$password}' where id='{$id}'";
+			// $result = $db_conn->query($query);
+
+      # Prepared Statement
+      $stmt = $db_conn->prepare("UPDATE members SET name=?, email=?, company=?, password=? WHERE id=?");
+      $stmt->bind_param("ssssi", $name, $email, $company, $password, $id);
 		} else {
-			$query = "update members set name='{$name}', email='{$email}', company='{$company}' where id='{$id}'";
-			$result = $db_conn->query($query);
+			// $query = "update members set name='{$name}', email='{$email}', company='{$company}' where id='{$id}'";
+			// $result = $db_conn->query($query);
+
+      # Prepared Statement
+      $stmt = $db_conn->prepare("UPDATE members SET name=?, email=?, company=? WHERE id=?");
+      $stmt->bind_param("sssi", $name, $email, $company, $id);
 		}
+    $stmt->execute();
 		echo "<script>alert('Complete!');</script>";
 	}
 
-	$query = "select * from members where id='{$id}'";
+	// $query = "select * from members where id='{$id}'";
+	// $result = $db_conn->query($query);
 
-	$result = $db_conn->query($query);
+  # Prepared Statement
+  $stmt = $db_conn->prepare("SELECT * FROM members WHERE id=?");
+  $stmt->bind_param("i", $id);
+  $stmt->execute();
+
+  $result = $stmt->get_result();
 	$num = $result->num_rows;
 ?>
 

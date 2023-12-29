@@ -14,8 +14,15 @@
   if(!empty($id) && !empty($password)) {
     $password = md5($password);
 
-    $query = "SELECT * FROM members WHERE id='{$id}' AND password='{$password}'";
-    $result = $db_conn->query($query);
+    // $query = "SELECT * FROM members WHERE id='{$id}' AND password='{$password}'";
+    // $result = $db_conn->query($query);
+
+    // Prepared Statement
+    $stmt = $db_conn->prepare("SELECT * FROM members WHERE id=? AND password=?");
+    $stmt->bind_param("ss", $id, $password);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
     $num = $result->num_rows;
 
     if($num != 0) { # If login success
@@ -28,6 +35,7 @@
       exit();
     }
   }
+  
   // 카카오 로그인 접근토큰 요청 예제
   $kakao_state = md5(microtime() . mt_rand()); // 보안용 값
   $_SESSION['kakao_state'] = $kakao_state;
