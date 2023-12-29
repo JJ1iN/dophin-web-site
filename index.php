@@ -37,7 +37,6 @@ if(empty($page)) {
 } else {
     echo "<script>location.href='index.php?page=error&value={$page}';</script>";
 }
- 
 ?>
 
 <!doctype html>

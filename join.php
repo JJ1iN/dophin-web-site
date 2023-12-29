@@ -16,8 +16,13 @@
 
     $password = md5($password1);
 
-    $query = "insert into members(id, password, name, email, company) values('{$id}', '{$password}', '{$name}', '{$email}', '{$company}')";
-    $result = $db_conn->query($query);
+    // $query = "insert into members(id, password, name, email, company) values('{$id}', '{$password}', '{$name}', '{$email}', '{$company}')";
+    // $result = $db_conn->query($query);
+
+    # Prepared Statement
+    $stmt = $db_conn->prepare("INSERT INTO members (id, password, name, email, company) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $id, $password, $name, $email, $company);
+    $stmt->execute();
 
     echo "<script>alert('Welcome!');location.href='index.php?page=login';</script>";
     exit();

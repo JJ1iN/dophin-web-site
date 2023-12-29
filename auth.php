@@ -1,8 +1,4 @@
 <?php
-	include_once("./common.php");
-
-	$db_conn = mysql_conn();
-
 	$mode = $_REQUEST["mode"];
 	$idx = $_REQUEST["idx"];
 
@@ -11,8 +7,8 @@
 	} else if($mode == "delete") {
 		$page = "action.php";
 	}
-
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>:: CREHACKTIVE INSECURE WEB-SITE ::</title>
+  <title> :: CREHACKTIVE INSECURE WEB-SITE ::</title>
 
   <!-- Bootstrap core CSS -->
   <link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -71,6 +67,3 @@
   </script>
 </body>
 </html>
-<?php
-	$db_conn->close();
-?>

@@ -1,7 +1,7 @@
 <?php
 	@session_start();
 	header("Content-Type: text/html; charset=UTF-8");
-	include ( './common.php' );
+	include ('./common.php');
 
 	$mode = $_REQUEST["mode"];
 	$db_conn = mysql_conn();
@@ -38,8 +38,13 @@
 
 		$content = str_replace("\r\n", "<br>", $content);
 		
-		$query = "insert into {$tb_name}(title, id, writer, password, content, file, secret, regdate) values('{$title}', '{$id}', '{$writer}', '{$password}', '{$content}', '{$uploadFile}', '{$secret}', now())";
-		$db_conn->query($query);
+		// $query = "insert into {$tb_name}(title, id, writer, password, content, file, secret, regdate) values('{$title}', '{$id}', '{$writer}', '{$password}', '{$content}', '{$uploadFile}', '{$secret}', now())";
+		// $db_conn->query($query);
+
+		# Prepared Statement
+		$stmt = $db_conn->prepare("INSERT INTO {$tb_name} (title, id, writer, password, content, file, secret, regdate) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+		$stmt->bind_param("sssssss", $title, $id, $writer, $password, $content, $uploadFile, $secret);
+		$stmt->execute();
 	} else if($mode == "modify") {
 		$idx = $_POST["idx"];
 		$title = xss_html_entity($_POST["title"]);
@@ -54,8 +59,16 @@
 		}
 
 		# Password Check Logic
-		$query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
-		$result = $db_conn->query($query);
+
+		// $query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
+		// $result = $db_conn->query($query);
+
+		# Prepared Statement
+		$stmt = $db_conn->prepare("SELECT * FROM {$tb_name} WHERE idx=? AND password=?");
+		$stmt->bind_param("is", $idx, $password);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
 		$num = $result->num_rows;
 
 		if($num == 0) {
@@ -81,17 +94,31 @@
 		
 		$content = str_replace("\r\n", "<br>", $content);
 		
-		$query = "update {$tb_name} set title='{$title}', content='{$content}', file='{$uploadFile}', secret='{$secret}', regdate=now() where idx={$idx}";
-		$db_conn->query($query);
+		// $query = "update {$tb_name} set title='{$title}', content='{$content}', file='{$uploadFile}', secret='{$secret}', regdate=now() where idx={$idx}";
+		// $db_conn->query($query);
+		
+		# Prepared Statement
+		$stmt = $db_conn->prepare("UPDATE {$tb_name} SET title=?, content=?, file=?, secret=?, regdate=NOW() WHERE idx=?");
+		$stmt->bind_param("ssssi", $title, $content, $uploadFile, $secret, $idx);
+		$stmt->execute();
 	} else if($mode == "delete") {
 		$idx = $_POST["idx"];
 		$password = $_POST["password"];
 		
 		# Password Check Logic
-		$query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
-		$result = $db_conn->query($query);
-		$num = $result->num_rows;
 
+		// $query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
+		// $result = $db_conn->query($query);
+		// $num = $result->num_rows;
+
+		# Prepared Statement
+		$stmt = $db_conn->prepare("SELECT * FROM {$tb_name} WHERE idx=? AND password=?");
+		$stmt->bind_param("is", $idx, $password);
+		$stmt->execute();
+		
+		$result = $stmt->get_result();
+		$num = $result->num_rows;
+	
 		if($num == 0) {
 			echo "<script>alert('패스워드가 일치하지 않습니다.');history.back(-1);</script>";
 			exit();

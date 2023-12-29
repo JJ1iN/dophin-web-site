@@ -12,8 +12,13 @@ $new_content = $_POST['new_content'];
 date_default_timezone_set('Asia/Seoul');
 $currentTime = date('Y-m-d H:i:s');
 
-$query = "UPDATE comments SET content = '{$new_content}', regdate = '{$currentTime}' WHERE idx = {$comment_idx}";
-$db_conn->query($query);
+// $query = "UPDATE comments SET content = '{$new_content}', regdate = '{$currentTime}' WHERE idx = {$comment_idx}";
+// $db_conn->query($query);
+
+# Prepared Statement
+$stmt = $db_conn->prepare("UPDATE comments SET content = ?, regdate = ? WHERE idx = ?");
+$stmt->bind_param("ssi", $new_content, $currentTime, $comment_idx);
+$stmt->execute();
 
 echo "<script>location.href='index.php?page=view&idx={$post_idx}';</script>";
 $db_conn->close();

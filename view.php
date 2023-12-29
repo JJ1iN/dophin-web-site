@@ -9,13 +9,20 @@
     if($idx !== null) {
       $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
+      # Prepared Statement
       if(empty($password)) {
-        $query = "select * from {$tb_name} where idx={$idx} and secret='n'";
+        // $query = "select * from {$tb_name} where idx={$idx} and secret='n'";
+        $stmt = $db_conn->prepare("SELECT * FROM {$tb_name} WHERE idx=? AND secret='n'");
+        $stmt->bind_param("i", $idx);
       } else {
-        $query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
+        // $query = "select * from {$tb_name} where idx={$idx} and password='{$password}'";
+        $stmt = $db_conn->prepare("SELECT * FROM {$tb_name} WHERE idx=? AND password=?");
+        $stmt->bind_param("is", $idx, $password);    
       }
+      $stmt->execute();
 
-      $result_post = $db_conn->query($query);
+      // $result_post = $db_conn->query($query);
+      $result_post = $stmt->get_result();
       $num_post = $result_post->num_rows;
     }
   ?>

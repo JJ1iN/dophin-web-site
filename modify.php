@@ -5,8 +5,15 @@
 
 	$idx = $_GET["idx"];
 
-	$query = "select * from {$tb_name} where idx={$idx}";
-	$result = $db_conn->query($query);
+	// $query = "select * from {$tb_name} where idx={$idx}";
+	// $result = $db_conn->query($query);
+
+  # Prepared Statement
+  $stmt = $db_conn->prepare("SELECT * FROM {$tb_name} WHERE idx = ?");
+  $stmt->bind_param("i", $idx);
+  $stmt->execute();
+
+  $result = $stmt->get_result();
 	$num = $result->num_rows;
 ?>
 
