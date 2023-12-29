@@ -42,6 +42,7 @@
     <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" name="password1" placeholder="Password Input">
+    <small class="form-text text-muted">※ Your password should be <b>at least 8 characters</b>, contain a mix of <b>uppercase or lowercase letters, a number, and a special character.</b></small>
     </div>
     <div class="form-group">
     <label for="exampleInputPassword2">Password Check</label>
@@ -64,3 +65,19 @@
     </div>
   </form>
 </div>
+
+<!-- Password Strength Check -->
+<script src="checkPasswordComplexity.js"></script>
+<script>
+window.onload = function() {
+  var passwordInput = document.querySelector('input[name="password1"]');
+  passwordInput.addEventListener('blur', function() {
+    var password = passwordInput.value;
+    var passwordStrength = checkPasswordComplexity(password);
+    if (passwordStrength == 'Weak') {
+      alert("Your password is too weak.");
+      passwordInput.value = '';
+    }
+  });
+};
+</script>
