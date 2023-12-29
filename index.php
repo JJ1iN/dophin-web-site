@@ -18,10 +18,6 @@ if(empty($page)) {
     $page = "login.php";
 } else if ($page == "join") {
     $page = "join.php";
-} else if ($page == "pingcheck") {
-    $page = "pingcheck.php";
-} else if ($page == "xmlparser") {
-    $page = "xmlparser.php";
 } else if ($page == "write") {
     $page = "write.php";
 } else if ($page == "view") {
@@ -81,10 +77,6 @@ define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback.php'); 
       <a class="p-2 text-dark" href="index.php?page=join">Join</a>
       <?php } else { ?>
       <a class="p-2 text-dark" href="index.php?page=mypage&id=<?=$_SESSION["id"]?>">MyPage</a>
-      <?php if($_SESSION["id"] == "admin") { ?>
-      <a class="p-2 text-dark" href="index.php?page=pingcheck">Ping Check</a>
-      <a class="p-2 text-dark" href="index.php?page=xmlparser">XML Parser</a>
-      <?php } ?>
       <a class="p-2 text-dark" href="logout.php">Logout</a>
       <?php } ?>
     </nav>

@@ -35,6 +35,7 @@
       exit();
     }
   }
+  
   // 카카오 로그인 접근토큰 요청 예제
   $kakao_state = md5(microtime() . mt_rand()); // 보안용 값
   $_SESSION['kakao_state'] = $kakao_state;

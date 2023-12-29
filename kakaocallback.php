@@ -3,12 +3,9 @@
 include ('./common.php');
 $db_conn = mysql_conn();
 
-session_start();
 // KAKAO LOGIN
-
 define('KAKAO_CLIENT_ID', '89386f572e521e53290b241600c5b88b');
 define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback');
-
 
 if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
     if (isset($_GET["code"])) {
@@ -75,7 +72,6 @@ if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
             }
             // 회원정보가 없다면 회원가입
             else {
-
                 // 카카오톡에서 받아온 사용자 정보
                 $mb_uid = 'kakao_' . $me_responseArr['id'];
                 $mb_nickname = $me_responseArr['properties']['nickname'];
@@ -90,10 +86,7 @@ if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
                 $company = 'KaKao';
 
                 // 회원가입 쿼리
-
-                $query = "INSERT INTO members (id, password, name, email, company) 
-          VALUES ('$mb_uid', '$password', '$mb_nickname', '$mb_email', '$company')";
-
+                $query = "INSERT INTO members (id, password, name, email, company) VALUES ('$mb_uid', '$password', '$mb_nickname', '$mb_email', '$company')";
 
                 // 쿼리 실행
                 $db_conn->query($query);
