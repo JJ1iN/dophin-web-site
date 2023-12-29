@@ -5,7 +5,7 @@ $db_conn = mysql_conn();
 
 // KAKAO LOGIN
 define('KAKAO_CLIENT_ID', '89386f572e521e53290b241600c5b88b');
-define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback');
+define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback.php');
 
 if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
     if (isset($_GET["code"])) {
