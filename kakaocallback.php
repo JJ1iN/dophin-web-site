@@ -7,6 +7,10 @@ $db_conn = mysql_conn();
 define('KAKAO_CLIENT_ID', '89386f572e521e53290b241600c5b88b');
 define('KAKAO_CALLBACK_URL', 'http://144.24.77.217/Dolphin/kakaocallback.php');
 
+// 로그 출력
+error_log("Session state: " . $_SESSION['kakao_state']);
+error_log("GET state: " . $_GET['state']);
+
 if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
     if (isset($_GET["code"])) {
         //사용자 토큰 받기
@@ -68,7 +72,8 @@ if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
                 // 로그인 처리를 수행합니다.
                 $_SESSION["id"] = $mb_uid;
                 $_SESSION["name"] = $me_responseArr['properties']['nickname'];
-                echo "<script>location.href='index.php';</script>";
+                header('Location: index.php');
+                exit;
             }
             // 회원정보가 없다면 회원가입
             else {
@@ -95,7 +100,8 @@ if (isset($_GET['state']) && ($_SESSION['kakao_state'] == $_GET['state'])) {
                 $_SESSION["id"] = $mb_uid;
                 $_SESSION["name"] = $mb_nickname;
 
-                echo "<script>location.href='index.php';</script>";
+                header('Location: index.php');
+                exit;
             }
 
         } else {
