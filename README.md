@@ -27,5 +27,5 @@ sudo iptables -I INPUT 1 -p tcp --dport 80 -j DROP
 ```
 
 ## To-Do
-- KakaoTalk, Naver Login
+- Naver Login (Need to resolve KakaoTalk login error)
 - User Follow
