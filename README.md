@@ -1,6 +1,11 @@
 # Dolphin Board
 
 This site is basic web board site.
+- CRUD posts
+- File Upload/Download
+- Join/Login
+- Comment
+- KakaoTalk Login (Need to resolve error)
 
 ## Server Settings
 Based [Oracle VM Instance](https://www.oracle.com/kr/cloud/compute/virtual-machines/), Ubuntu-20.04
@@ -27,5 +32,5 @@ sudo iptables -I INPUT 1 -p tcp --dport 80 -j DROP
 ```
 
 ## To-Do
-- Naver Login (Need to resolve KakaoTalk login error)
+- Naver Login 
 - User Follow
