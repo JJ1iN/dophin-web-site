@@ -1,6 +1,6 @@
 # Dolphin Board
 
-This site is basic web board site.
+This site is basic web board site. **(The End)**
 - CRUD posts
 - File Upload/Download
 - Join/Login
